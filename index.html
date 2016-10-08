@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" href="app.css" type="text/css"/>
+    <script src="app/script/require.js"></script>
+</head>
+<body>
+    <h1>TypeScript HTML App</h1>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+        require.config({
+            baseUrl: "/app/script"
+        });
+    </script>
+
+    <!--<script type="text/javascript">
+        requirejs(["file1"]);
+    </script>-->
+
+    <script type="text/javascript">
+        requirejs(["modules"]);
+    </script>
+</body>
+</html>
