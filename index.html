@@ -18,12 +18,12 @@
         });
     </script>
 
-    <!--<script type="text/javascript">
-        requirejs(["file1"]);
-    </script>-->
-
+    <script type="text/javascript" src="/app/script/modules.js"></script>
     <script type="text/javascript">
-        requirejs(["modules"]);
+        require(['file1'], function(file1){
+            console.log('require...', file1);
+            file1.default();
+        })
     </script>
 </body>
 </html>

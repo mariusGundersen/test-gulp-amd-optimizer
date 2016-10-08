@@ -16,7 +16,6 @@
         rename = require("gulp-rename"),
         plumber = require("gulp-plumber"),
         foreach = require("gulp-foreach"),
-        amdOptimize = require("amd-optimize"),
         gAmdOptimize = require("gulp-amd-optimizer"),
         lazypipe = require("lazypipe"),
         clone = require("gulp-clone"),
