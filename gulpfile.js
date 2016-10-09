@@ -33,6 +33,7 @@
     paths.typescriptSrcFolder = paths.scriptsSrcFolder + "/ts";
     paths.nodePackages = "node_modules";
     paths.typingsSrcFolder = "typings";
+    paths.require = "node_modules/requirejs/require.js";
 
     /* Globs */
     paths.typeScriptFilesGlob = "{*.ts,**/*.ts}";
@@ -71,7 +72,7 @@ var getTsProject = function () {
 }
 var tsProject = getTsProject();
 gulp.task("scripts:custom", function () {
-    return gulp.src([paths.typeScriptFiles, paths.typeScriptDefinitionFiles], { base: paths.typescriptSrcFolder })
+    var typescript= gulp.src([paths.typeScriptFiles, paths.typeScriptDefinitionFiles], { base: paths.typescriptSrcFolder })
         .pipe(plumber({ handleError: errorHandler }))
         .pipe(sourcemaps.init())
         .on('end', function() { util.log("Transpiling TS -> ES6..."); })
@@ -87,7 +88,8 @@ gulp.task("scripts:custom", function () {
         .on('end', function () { util.log("Outputting sourcemaps..."); })
         .pipe(sourcemaps.write("./"))
         .on('end', function () { util.log("Outputting destination scripts..."); })
-        .pipe(gulp.dest(paths.scriptsDest));
+    var require = gulp.src(paths.require);
+    return merge(require, typescript).pipe(gulp.dest(paths.scriptsDest));
 });
 
 gulp.task("default", ["scripts:custom"]);
